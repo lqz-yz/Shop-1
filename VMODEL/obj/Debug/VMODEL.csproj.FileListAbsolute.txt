@@ -1,0 +1,13 @@
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\bin\Debug\VMODEL.dll
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\bin\Debug\VMODEL.pdb
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\bin\Debug\MODEL.dll
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\bin\Debug\EntityFramework.dll
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\bin\Debug\MODEL.pdb
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\bin\Debug\MODEL.dll.config
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\bin\Debug\EntityFramework.xml
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\bin\Debug\zh-Hans\EntityFramework.resources.dll
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\obj\Debug\VMODEL.csprojAssemblyReference.cache
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\obj\Debug\VMODEL.csproj.CoreCompileInputs.cache
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\obj\Debug\VMODEL.csproj.CopyComplete
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\obj\Debug\VMODEL.dll
+E:\学校\课程\Asp.net云平台开发\Project\VMODEL\obj\Debug\VMODEL.pdb
