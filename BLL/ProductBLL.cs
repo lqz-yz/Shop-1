@@ -63,15 +63,20 @@ namespace BLL
             {
                 attrDal.Delete(attr);
             }
+            var skuImg = skuImgDal.Search(x => x.ProductID == id);
+            foreach (var item in skuImg)
+            {
+                skuImgDal.Delete(item);
+            }
             return SaveChange();
         }
 
-        public int Update(Product product, List<ProductSku> skuList, List<ProductAttr> attrList)
+        public int Update(Product product, List<ProductSku> skuList, List<ProductAttr> attrList, List<ProductSkuImg> ProductSkuImg)
         {
             //修改商品表
             dal.Update(product);
 
-            //删除属性和sku
+            //删除属性和sku、skuimg
             var skus = skuDal.Search(x => x.ProductID == product.ID);
             foreach (var sku in skus)
             {
@@ -82,8 +87,13 @@ namespace BLL
             {
                 attrDal.Delete(attr);
             }
+            var skuImg = skuImgDal.Search(x => x.ProductID == product.ID);
+            foreach (var item in skuImg)
+            {
+                skuImgDal.Delete(item);
+            }
 
-            //添加属性和sku
+            //添加属性和sku、skuimg
             foreach (var sku in skuList)
             {
                 sku.ProductID = product.ID;
@@ -94,15 +104,20 @@ namespace BLL
                 attr.ProductID = product.ID;
                 attrDal.Add(attr);
             }
+            foreach (var item in ProductSkuImg)
+            {
+                item.ProductID = product.ID;
+                skuImgDal.Add(item);
+            }
             return SaveChange();
         }
 
-        public Product GetOne(int id, out List<ProductSku> skus, out List<ProductAttr> attrs)
+        public Product GetOne(int id, out List<ProductSku> skus, out List<ProductAttr> attrs, out List<ProductSkuImg> ProductSkuImg)
         {
             var product = dal.GetOne(id);
             skus = skuDal.Search(x => x.ProductID == id);
             attrs = attrDal.Search(x => x.ProductID == id);
-
+            ProductSkuImg = skuImgDal.Search(x => x.ProductID == id);
             return product;
         }
 

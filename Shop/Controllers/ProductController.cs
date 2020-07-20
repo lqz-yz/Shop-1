@@ -82,7 +82,7 @@ namespace Shop.Controllers
         public ActionResult Update(ProductVModel vModel)
         {
             vModel.Product.UpdateTime = DateTime.Now;
-            var result = Bll.Update(vModel.Product, vModel.Skus, vModel.Attrs);
+            var result = Bll.Update(vModel.Product, vModel.Skus, vModel.Attrs, vModel.ProductSkuImg);
             return Json(new { state = result > 0, msg = result > 0 ? "修改成功！" : "修改失败！" });
         }
 
@@ -91,12 +91,11 @@ namespace Shop.Controllers
         {
             List<ProductSku> skus;
             List<ProductAttr> attrs;
-            var product = Bll.GetOne(id, out skus, out attrs);
+            List<ProductSkuImg> ProductSkuImg;
+            var product = Bll.GetOne(id, out skus, out attrs,out ProductSkuImg);
             var result = new
             {
-                product = product,
-                attrs = attrs,
-                skus = skus
+                product,attrs,skus,ProductSkuImg
             };
             return Json(result, JsonRequestBehavior.AllowGet);
         }
