@@ -32,7 +32,7 @@
                         <div class="form-group row">
                             <label for="Name" class="col-sm-2 col-form-label">分类名称：</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="Name" name="Name" placeholder="请输入分类名称">
+                                <input type="text" class="form-control" onchange="KeyWordsAutoFill()" id="Name" name="Name" placeholder="请输入分类名称">
                             </div>
                         </div>
 
@@ -129,6 +129,11 @@
                     });
                 }
             })
+        }
+
+        function KeyWordsAutoFill() {
+            $("#KeyWords").val($("#ProductTitle").val())
+            KeyWordsAutoFill = function () { };
         }
 
         var PID = 0;

@@ -11,24 +11,16 @@ namespace BLL
     {
         IProductSkuDAL skuDal = new ProductSkuDAL();
         IProductAttrDAL attrDal = new ProductAttrDAL();
-        IProductSkuImgDAL skuImgDal = new ProductSkuImgDAL();
+        //IProductSkuImgDAL skuImgDal = new ProductSkuImgDAL();
         IProductAttrKeyBLL attrBll = new ProductAttrKeyBLL();
-        public int Add(Product product, List<ProductSku> skuList, List<ProductAttr> attrList, List<ProductSkuImg> productSkuImg)
+        public int Add(Product product, List<ProductSku> skuList, List<ProductAttr> attrList)
         {
             var result = 0;
             var tran = dal.BeginTran();
             try
             {
                 dal.Add(product);
-
-
                 result += SaveChange();
-                foreach (var skuImg in productSkuImg)
-                {
-                    skuImg.ProductID = product.ID;
-                    skuImgDal.Add(skuImg);
-                }
-
                 foreach (var sku in skuList)
                 {
                     sku.ProductID = product.ID;
@@ -43,7 +35,7 @@ namespace BLL
                 result += SaveChange();
                 tran.Commit();
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
                 tran.Rollback();
             }
@@ -63,15 +55,10 @@ namespace BLL
             {
                 attrDal.Delete(attr);
             }
-            var skuImg = skuImgDal.Search(x => x.ProductID == id);
-            foreach (var item in skuImg)
-            {
-                skuImgDal.Delete(item);
-            }
             return SaveChange();
         }
 
-        public int Update(Product product, List<ProductSku> skuList, List<ProductAttr> attrList, List<ProductSkuImg> ProductSkuImg)
+        public int Update(Product product, List<ProductSku> skuList, List<ProductAttr> attrList)
         {
             //修改商品表
             dal.Update(product);
@@ -87,11 +74,6 @@ namespace BLL
             {
                 attrDal.Delete(attr);
             }
-            var skuImg = skuImgDal.Search(x => x.ProductID == product.ID);
-            foreach (var item in skuImg)
-            {
-                skuImgDal.Delete(item);
-            }
 
             //添加属性和sku、skuimg
             foreach (var sku in skuList)
@@ -104,20 +86,14 @@ namespace BLL
                 attr.ProductID = product.ID;
                 attrDal.Add(attr);
             }
-            foreach (var item in ProductSkuImg)
-            {
-                item.ProductID = product.ID;
-                skuImgDal.Add(item);
-            }
             return SaveChange();
         }
 
-        public Product GetOne(int id, out List<ProductSku> skus, out List<ProductAttr> attrs, out List<ProductSkuImg> ProductSkuImg)
+        public Product GetOne(int id, out List<ProductSku> skus, out List<ProductAttr> attrs)
         {
             var product = dal.GetOne(id);
             skus = skuDal.Search(x => x.ProductID == id);
             attrs = attrDal.Search(x => x.ProductID == id);
-            ProductSkuImg = skuImgDal.Search(x => x.ProductID == id);
             return product;
         }
 

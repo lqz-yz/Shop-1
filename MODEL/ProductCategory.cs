@@ -13,7 +13,7 @@ namespace MODEL
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
 
-    public partial class ProductCategory:BaseModel
+    public partial class ProductCategory : BaseModel
     {
         [Required(ErrorMessage = "分类名称不能为空")]
         [StringLength(50, ErrorMessage = "分类名称最大长度不能超过50")]

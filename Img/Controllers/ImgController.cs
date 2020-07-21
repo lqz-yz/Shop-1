@@ -19,10 +19,6 @@ namespace Img.Controllers
     {
         public ActionResult Upload()
         {
-            //string AccessKey = "RuDIeC9yy7cWvKuha-hh_-O_nGR80xLgPbYwF_oh";
-            //string SecretKey = "HgCxHyeOH_ugF2ii0T8RNppakMMgqjAhwBdS3TsQ";
-            //string Bucket = "hkl-shop-statics";
-
             //List<string> fileNames = new List<string>();
             List<ImgInfo> fileList = new List<ImgInfo>();
             var files = Request.Files;   //["Img"]
@@ -40,7 +36,7 @@ namespace Img.Controllers
                 {
                     return Json(new { state = false, msg = "上传的文件已损坏" });
                 }
-                if (!(fileExtension == FileExtension.GIF || fileExtension == FileExtension.JPG || fileExtension == FileExtension.PNG))
+                if (!(fileExtension == FileExtension.WEBP || fileExtension == FileExtension.GIF || fileExtension == FileExtension.JPG || fileExtension == FileExtension.PNG))
                 {
                     return Json(new { state = false, msg = "上传的类型有误" });
                 }

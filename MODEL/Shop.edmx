@@ -10,10 +10,10 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="ProductTitle" Type="nvarchar" MaxLength="500" />
+          <Property Name="ProductTitle" Type="nvarchar" MaxLength="1000" />
           <Property Name="ProductBrandID" Type="int" />
-          <Property Name="ProductMainImg" Type="varchar" MaxLength="500" />
-          <Property Name="ProductSlideImgs" Type="varchar" MaxLength="1000" />
+          <Property Name="ProductMainImg" Type="varchar" MaxLength="3000" />
+          <Property Name="ProductSlideImgs" Type="varchar" MaxLength="3000" />
           <Property Name="ProductDetail" Type="nvarchar(max)" />
           <Property Name="ProductSku" Type="varchar" MaxLength="3000" />
           <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
@@ -22,8 +22,8 @@
           <Property Name="UpdateTime" Type="datetime" />
           <Property Name="ProductCategoryID" Type="int" />
           <Property Name="ProductCategoryPath" Type="varchar" MaxLength="100" />
-          <Property Name="ProductSkuValues" Type="varchar" MaxLength="2000" />
-          <Property Name="KeyWords" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ProductSkuValues" Type="varchar" MaxLength="5000" />
+          <Property Name="KeyWords" Type="nvarchar" MaxLength="1000" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductAttr">
           <Key>
@@ -146,9 +146,9 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ProductTitle" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="ProductMainImg" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
-          <Property Name="ProductSlideImgs" Type="String" MaxLength="1000" FixedLength="false" Unicode="false" />
+          <Property Name="ProductTitle" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="ProductMainImg" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
+          <Property Name="ProductSlideImgs" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
           <Property Name="ProductDetail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="ProductSku" Type="String" MaxLength="3000" FixedLength="false" Unicode="false" />
           <Property Name="CreateTime" Type="DateTime" Precision="3" />
@@ -157,9 +157,9 @@
           <Property Name="Price" Type="Decimal" Precision="18" Scale="2" />
           <Property Name="Stock" Type="Int32" />
           <Property Name="ProductCategoryPath" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
-          <Property Name="ProductSkuValues" Type="String" MaxLength="2000" FixedLength="false" Unicode="false" />
+          <Property Name="ProductSkuValues" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
           <Property Name="ProductBrandID" Type="Int32" Nullable="true" />
-          <Property Name="KeyWords" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="KeyWords" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="ProductAttrKey">
           <Key>

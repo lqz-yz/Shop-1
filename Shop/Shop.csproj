@@ -490,7 +490,6 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
-    <Compile Include="Controllers\ImgController.cs" />
     <Compile Include="Controllers\ProductAttrKeySkuController.cs" />
     <Compile Include="Controllers\ProductBrandController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
@@ -568,7 +567,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="ShopImg\" />
     <Folder Include="Upload\Product\CategoryImg\" />
     <Folder Include="Upload\Product\ProductDetailImg\" />
     <Folder Include="Upload\Product\ProductMainImg\" />

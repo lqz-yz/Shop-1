@@ -12,23 +12,25 @@ namespace COMMON
         JPG = 255216,
         GIF = 7173,
         PNG = 13780,
-        VALIDFILE = 9999999
+        WEBP=8273,
+        VALIDFILE = 9999999,
         // 255216 jpg; 
         // 7173 gif; 
-        // 6677 bmp, 
+        //bmp = 6677,
         // 13780 png; 
-        // 6787 swf 
-        // 7790 exe dll, 
-        // 8297 rar 
-        // 8075 zip 
-        // 55122 7z 
-        // 6063 xml 
-        // 6033 html 
-        // 239187 aspx 
-        // 117115 cs 
-        // 119105 js 
-        // 102100 txt 
-        // 255254 sql  
+        //swf = 6787,
+        //exe = 7790,
+        //dll = 7790,
+        //rar = 8297,
+        //zip = 8075,
+        //7z = 55122,
+        //xml = 6063,
+        //html = 6033,
+        //aspx = 239187,
+        //cs = 117115,
+        //js = 119105,
+        //txt = 102100,
+        //sql = 255254,
     }
     public class FileHelper
     {
@@ -36,7 +38,7 @@ namespace COMMON
         {
             //FileStream fs = new FileStream(fileName, FileMode.Open, FileAccess.Read);
             //System.IO.BinaryReader br = new System.IO.BinaryReader(fileStream);
-            string fileType = string.Empty; ;
+            string fileType = string.Empty;
             try
             {
                 byte data = bytes[0];

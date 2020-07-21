@@ -59,7 +59,7 @@ namespace Shop.Controllers
             //List<ProductSku> skuList = vModel.Skus;
             //List<ProductAttr> attrList = vModel.Attrs;
             vModel.Product.CreateTime = DateTime.Now;
-            var result = Bll.Add(vModel.Product, vModel.Skus, vModel.Attrs, vModel.ProductSkuImg);
+            var result = Bll.Add(vModel.Product, vModel.Skus, vModel.Attrs);
             return Json(new { state = result > 0, msg = result > 0 ? "提交成功！" : "提交失败！" });
         }
 
@@ -82,7 +82,7 @@ namespace Shop.Controllers
         public ActionResult Update(ProductVModel vModel)
         {
             vModel.Product.UpdateTime = DateTime.Now;
-            var result = Bll.Update(vModel.Product, vModel.Skus, vModel.Attrs, vModel.ProductSkuImg);
+            var result = Bll.Update(vModel.Product, vModel.Skus, vModel.Attrs);
             return Json(new { state = result > 0, msg = result > 0 ? "修改成功！" : "修改失败！" });
         }
 
@@ -91,11 +91,10 @@ namespace Shop.Controllers
         {
             List<ProductSku> skus;
             List<ProductAttr> attrs;
-            List<ProductSkuImg> ProductSkuImg;
-            var product = Bll.GetOne(id, out skus, out attrs,out ProductSkuImg);
+            var product = Bll.GetOne(id, out skus, out attrs);
             var result = new
             {
-                product,attrs,skus,ProductSkuImg
+                product,attrs,skus
             };
             return Json(result, JsonRequestBehavior.AllowGet);
         }

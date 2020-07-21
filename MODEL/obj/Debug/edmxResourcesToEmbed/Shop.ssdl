@@ -5,10 +5,10 @@
       <PropertyRef Name="ID" />
     </Key>
     <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ProductTitle" Type="nvarchar" MaxLength="500" />
+    <Property Name="ProductTitle" Type="nvarchar" MaxLength="1000" />
     <Property Name="ProductBrandID" Type="int" />
-    <Property Name="ProductMainImg" Type="varchar" MaxLength="500" />
-    <Property Name="ProductSlideImgs" Type="varchar" MaxLength="1000" />
+    <Property Name="ProductMainImg" Type="varchar" MaxLength="3000" />
+    <Property Name="ProductSlideImgs" Type="varchar" MaxLength="3000" />
     <Property Name="ProductDetail" Type="nvarchar(max)" />
     <Property Name="ProductSku" Type="varchar" MaxLength="3000" />
     <Property Name="Price" Type="decimal" Precision="18" Scale="2" />
@@ -17,8 +17,8 @@
     <Property Name="UpdateTime" Type="datetime" />
     <Property Name="ProductCategoryID" Type="int" />
     <Property Name="ProductCategoryPath" Type="varchar" MaxLength="100" />
-    <Property Name="ProductSkuValues" Type="varchar" MaxLength="2000" />
-    <Property Name="KeyWords" Type="nvarchar" MaxLength="200" Nullable="false" />
+    <Property Name="ProductSkuValues" Type="varchar" MaxLength="5000" />
+    <Property Name="KeyWords" Type="nvarchar" MaxLength="1000" Nullable="false" />
   </EntityType>
   <EntityType Name="ProductAttr">
     <Key>
