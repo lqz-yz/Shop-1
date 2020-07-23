@@ -72,7 +72,7 @@
                                     </label>
                                 </div>
                                 <div class="icheck-primary  col-sm-6">
-                                    <input type="radio" id="r2" name="Display" checked="" value="0">
+                                    <input type="radio" id="r2" name="Display" value="0">
                                     <label for="r2" style="font-weight:normal">
                                         否
                                     </label>
@@ -166,6 +166,7 @@
                                 showConfirmButton: false,
                                 timer: 1500
                             })
+                            document.getElementById("form").reset()
                         }
                         else {
                             Swal.fire({
@@ -198,7 +199,7 @@
             });
             //图片上传成功的回调函数
             $("#BrandLogo").on('fileuploaded', function (event, data, previewId, index) {//异步上传成功结果处理
-                BrandLogo.push(data.response[0]);
+                BrandLogo.push(JSON.stringify(data.response[0]));
             })
 
             $('#BrandImg').fileinput({
@@ -213,7 +214,7 @@
             });
             //图片上传成功的回调函数
             $("#BrandImg").on('fileuploaded', function (event, data, previewId, index) {//异步上传成功结果处理
-                BrandImg.push(data.response[0]);
+                BrandImg.push(JSON.stringify(data.response[0]));
             })
         })
         $('.select2').select2()

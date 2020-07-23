@@ -120,19 +120,18 @@
                 },
                 //设置数据映射
                 columns: [
-
                     { "data": "ID" },
                     { "data": "BrandName" },
                     { "data": "BrandInitials" },
                     {
                         "data": function (data) {
-                            var html = "<img src=\"" + data.BrandLogo + "\" style=\"width=\"50\" height=\"50\"\"  />";
+                            var html = "<img src=\"" + JSON.parse(data.BrandLogo).Url + "\" width=\"50\"/>";
                             return html;
                         }
                     },
                     {
                         "data": function (data) {
-                            var html = "<img src=\"" + data.BrandImg + "\" style=\"width=\"50\" height=\"50\"\"  />";
+                            var html = "<img src=\"" + JSON.parse(data.BrandImg).Url + "\" width=\"50\"/>";
                             return html;
                         }
                     },

@@ -115,7 +115,7 @@
                     $("#Name").val(data.productBrand.BrandName)
                     $("#LogoInitials").val(data.productBrand.BrandInitials)
                     //var _BrandLogo = eval("("+ data.Brand.BrandLogo +")")
-                    var BrandLogoTag = ["<img src='" + data.productBrand.BrandLogo + "' style='width:200px' class='file-preview-image' >"]
+                    var BrandLogoTag = ["<img src='" + JSON.parse(data.productBrand.BrandLogo).Url + "' style='width:200px' class='file-preview-image' >"]
                     BrandLogo.push(data.productBrand.BrandLogo)//修改不修改图片的时候吧之前的添加到里面防止为空
                     $('#BrandLogo').fileinput({
                         language: 'zh',//设置语言
@@ -129,7 +129,7 @@
                         initialPreview: BrandLogoTag //回显图片
                     });
                     //var _BrandImg = eval("("+ data.Brand.BrandImg +")")
-                    var BrandImgTag = ["<img src='" + data.productBrand.BrandImg + "' style='width:200px' class='file-preview-image' >"]
+                    var BrandImgTag = ["<img src='" + JSON.parse(data.productBrand.BrandImg).Url + "' style='width:200px' class='file-preview-image' >"]
                     BrandImg.push(data.productBrand.BrandImg)//修改不修改图片的时候吧之前的添加到里面防止为空
                     $('#BrandImg').fileinput({
                         language: 'zh',//设置语言
@@ -265,7 +265,7 @@
 
             //图片上传成功的回调函数
             $("#BrandLogo").on('fileuploaded', function (event, data, previewId, index) {//异步上传成功结果处理
-                BrandLogo.push(data.response[0]);
+                BrandLogo = (JSON.stringify(data.response[0]));
             })
 
             //图片修改删除之前的图片
@@ -275,7 +275,7 @@
 
             //图片上传成功的回调函数
             $("#BrandImg").on('fileuploaded', function (event, data, previewId, index) {//异步上传成功结果处理
-                BrandImg.push(data.response[0]);
+                BrandImg = JSON.stringify(data.response[0]);
             })
 
             //图片修改删除之前的图片
