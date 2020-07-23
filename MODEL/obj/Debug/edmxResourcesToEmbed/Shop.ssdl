@@ -8,6 +8,8 @@
     <Property Name="Name" Type="nvarchar" MaxLength="50" />
     <Property Name="Password" Type="varchar" MaxLength="50" />
     <Property Name="Role" Type="int" />
+    <Property Name="CreateTime" Type="datetime" />
+    <Property Name="LastLogin" Type="datetime" />
   </EntityType>
   <EntityType Name="Product">
     <Key>

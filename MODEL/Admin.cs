@@ -18,5 +18,7 @@ namespace MODEL
         public string Name { get; set; }
         public string Password { get; set; }
         public Nullable<int> Role { get; set; }
+        public Nullable<System.DateTime> CreateTime { get; set; }
+        public Nullable<System.DateTime> LastLogin { get; set; }
     }
 }

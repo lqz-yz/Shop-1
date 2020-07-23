@@ -110,6 +110,8 @@
     <EntitySetMapping Name="Admin">
       <EntityTypeMapping TypeName="ShopModel.Admin">
         <MappingFragment StoreEntitySet="Admin">
+          <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+          <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
           <ScalarProperty Name="Role" ColumnName="Role" />
           <ScalarProperty Name="Password" ColumnName="Password" />
           <ScalarProperty Name="Name" ColumnName="Name" />

@@ -13,6 +13,8 @@
           <Property Name="Name" Type="nvarchar" MaxLength="50" />
           <Property Name="Password" Type="varchar" MaxLength="50" />
           <Property Name="Role" Type="int" />
+          <Property Name="CreateTime" Type="datetime" />
+          <Property Name="LastLogin" Type="datetime" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
@@ -244,6 +246,8 @@
           <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="Role" Type="Int32" />
+          <Property Name="CreateTime" Type="DateTime" Precision="3" />
+          <Property Name="LastLogin" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -360,6 +364,8 @@
           <EntitySetMapping Name="Admin">
             <EntityTypeMapping TypeName="ShopModel.Admin">
               <MappingFragment StoreEntitySet="Admin">
+                <ScalarProperty Name="LastLogin" ColumnName="LastLogin" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Name" ColumnName="Name" />

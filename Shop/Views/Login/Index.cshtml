@@ -25,35 +25,57 @@
     <link rel="stylesheet" href="~/Statics/Adminlte/dist/css/adminlte.min.css">
     <!-- Google Font: Source Sans Pro -->
     <link href="https://fonts.loli.net/css?family=Source+Sans+Pro:300,400,400i,700" rel="stylesheet">
-
+    <style>
+        .login-page {
+            background: #e7ffff;
+        }
+        .login-box {
+            width: auto;
+        }
+        .boder {
+            border-radius: 8px;
+            border: 1px solid #dadce0;
+            display: block;
+            flex-shrink: 0;
+            margin: 0 auto;
+            transition: .2s;
+            width: 500px;
+            box-sizing: inherit;
+            background: #fff;
+            padding: 20px 40px 36px;
+        }
+        .UserInput {
+            height: 56px;
+            border-radius: 4px;
+            color: #202124;
+        }
+        .inputClass {
+            font-size: 18px;
+            height: 100%;
+            padding: 13px 16px;
+        }
+        .inputClass:focus {
+            border: 2px solid #1a73e8;
+        }
+    </style>
 </head>
-<body class="login-page" style="min-height: 485px;">
+<body class="login-page" style="min-height: 485px;" onLoad="document.getElementById('username').focus();GetCookie();">
     <div class="login-box">
-        <div class="login-logo">
-            <a href="#">Asp<b>.Net</b></a>
-        </div>
-        <!-- /.login-logo -->
-        <div class="card">
+        <div class="card boder">
             <div class="card-body login-card-body">
+                <div class="login-logo">
+                    <a href="#"><b>Asp</b>.Net</a>
+                </div>
                 <p class="login-box-msg">登录以进行您的操作</p>
 
                 <form action="/Login/SignIn" method="post">
-                    <div class="input-group mb-3">
-                        <input type="text" id="name" name="name" class="form-control" placeholder="用户名">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
-                        </div>
+                    <div class="mb-3 UserInput">
+                        <input type="text" id="username" name="username" class="form-control inputClass" placeholder="您的账号或用户名">
                     </div>
-                    <div class="input-group mb-3">
-                        <input type="password" name="password" id="password" class="form-control" placeholder="密码">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
-                        </div>
+                    <div class="mb-3 UserInput">
+                        <input type="password" name="password" id="password" class="form-control inputClass" placeholder="您的密码">
                     </div>
+                    <p id="error-msg" style="text-align:center;color:red;"></p>
                     <div class="row">
                         <div class="col-8">
                             <div class="icheck-primary">
@@ -74,19 +96,19 @@
                 <div class="social-auth-links text-center mb-3">
                     <p>- OR -</p>
                     <a href="#" class="btn btn-block btn-primary">
-                        <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                        <i class="fab fa-facebook mr-2"></i> 使用 Facebook 登录
                     </a>
                     <a href="#" class="btn btn-block btn-danger">
-                        <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                        <i class="fab fa-google-plus mr-2"></i> 使用 Google+ 登录
                     </a>
                 </div>
                 <!-- /.social-auth-links -->
 
                 <p class="mb-1">
-                    <a href="forgot-password.html">I forgot my password</a>
+                    <a href="forgot-password.html">忘记了您的密码？</a>
                 </p>
                 <p class="mb-0">
-                    <a href="register.html" class="text-center">Register a new membership</a>
+                    <a href="register.html" class="text-center">创建账号</a>
                 </p>
             </div>
             <!-- /.login-card-body -->
@@ -104,37 +126,103 @@
 
     <script>
         function Login() {
-            var formData = new FormData();
-            formData.append("Name", $("#name").val());
-            formData.append("password", $("#password").val());
+            if (checkLogin()) {
+                var formData = new FormData();
+                formData.append("UserName", $("#username").val());
+                formData.append("password", $("#password").val());
 
-            $.ajax({
-                url: "/Login/SignIn",
-                type: 'POST',
-                data: formData,
-                async: false,
-                dataType: "json",
-                // 告诉jQuery不要去处理发送的数据
-                processData: false,
-                // 告诉jQuery不要去设置Content-Type请求头
-                contentType: false,
-                success: function (result) {
-                    if (result.state == true) {
-                        window.location.href = "/Product/List";
-                    } else {
+                $.ajax({
+                    url: "/Login/SignIn",
+                    type: 'POST',
+                    data: formData,
+                    dataType: "json",
+                    // 告诉jQuery不要去处理发送的数据
+                    processData: false,
+                    // 告诉jQuery不要去设置Content-Type请求头
+                    contentType: false,
+                    success: function (result) {
+                        if (result.state == true) {
+                            window.location.href = "/Product/List";
+                        } else {
+                            $("#error-msg").html(result.msg);
+                        }
+                    },
+                    error: function (result) {
                         Swal.fire({
                             icon: 'error',
-                            title: result.msg
+                            title: "网络连接异常！"
                         })
                     }
-                },
-                error: function (result) {
-                    Swal.fire({
-                        icon: 'error',
-                        title: "网络连接异常！"
-                    })
+                })
+            }
+            return false;
+        }
+
+        function checkLogin() {
+            if ($("input[name='username']").val() == "") {
+                $("#error-msg").html('用户名不能为空！');
+                $("input[name='username']").focus();
+                return false;
+            }
+            if ($("input[name='password']").val() == "") {
+                $("#error-msg").html('密码不能为空！');
+                $("input[name='password']").focus();
+                return false;
+            }
+            else {
+                saveInfo();
+                return true;
+            }
+        }
+
+        saveInfo = function () {
+            try {
+                var isSave = document.getElementById('remember').checked;   //保存按键是否选中
+                if (isSave) {
+                    var username = document.getElementById('username').value;
+                    var password = document.getElementById('password').value;
+                    if (username != "" && password != "") {
+                        SetCookie(username, password);
+                    }
+                } else {
+                    SetCookie("", "");
                 }
-            })
+            } catch (e) {
+                console.log(e)
+            }
+        }
+
+        function SetCookie(username, password) {
+            var Then = new Date();
+            Then.setTime(Then.getTime() + 1866240000000);
+            document.cookie = "username=" + username + "%%" + password + ";expires=" + Then.toGMTString();
+        }
+
+        function GetCookie() {
+            var nmpsd;
+            var nm;
+            var psd;
+            var cookieString = new String(document.cookie);
+            var cookieHeader = "username=";
+            var beginPosition = cookieString.indexOf(cookieHeader);
+            cookieString = cookieString.substring(beginPosition);
+            var ends = cookieString.indexOf(";");
+            if (ends != -1) {
+                cookieString = cookieString.substring(0, ends);
+            }
+            if (beginPosition > -1) {
+                nmpsd = cookieString.substring(cookieHeader.length);
+                if (nmpsd != "") {
+                    beginPosition = nmpsd.indexOf("%%");
+                    nm = nmpsd.substring(0, beginPosition);
+                    psd = nmpsd.substring(beginPosition + 2);
+                    document.getElementById('username').value = nm;
+                    document.getElementById('password').value = psd;
+                    if (nm != "" && psd != "") {
+                        document.getElementById('remember').checked = true;
+                    }
+                }
+            }
         }
     </script>
 </body>

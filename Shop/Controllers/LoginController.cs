@@ -20,15 +20,15 @@ namespace Shop.Controllers
             //读cookies
             if (Request.Cookies["Name"] != null)
             {
-                string name = Server.UrlDecode(Request.Cookies["Name"].Value);
-                var result = BLL.Search(x => x.Name == name);
+                string username = Server.UrlDecode(Request.Cookies["Name"].Value);
+                var result = BLL.Search(x => x.Name == username);
                 if (result.Count == 1)
                 {
-                    if (result[0].Name== name)
+                    if (result[0].Name== username)
                     {
                         Session["user"] = result[0];
                         //下面两句实现滑动过期时间
-                        Response.Cookies["Name"].Value = Server.UrlEncode(name);
+                        Response.Cookies["Name"].Value = Server.UrlEncode(username);
                         Response.Cookies["Name"].Expires = DateTime.Now.AddDays(1);
                         return Redirect("/Product/List");
                     }
@@ -38,16 +38,16 @@ namespace Shop.Controllers
         }
 
         [HttpPost]
-        public ActionResult SignIn(string name, string password)
+        public ActionResult SignIn(string username, string password)
         {
             string salt = ")+_*&^@!&*(";
             password = Md5Helper.Md5(Md5Helper.Md5(salt + password));
             //从数据库查询用户信息，写入到session中
-            var result = BLL.Search(x => x.Name == name && x.Password == password);
+            var result = BLL.Search(x => x.Name == username && x.Password == password);
             if (result.Count==1)
             {
                 Session["user"] = result[0];
-                Response.Cookies["Name"].Value = Server.UrlEncode(name);
+                Response.Cookies["Name"].Value = Server.UrlEncode(username);
                 Response.Cookies["Name"].Expires = DateTime.Now.AddDays(1);
                 return Json(new { state = true});
             }
