@@ -488,8 +488,10 @@
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BaseController.cs" />
+    <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\ProductAttrKeySkuController.cs" />
     <Compile Include="Controllers\ProductBrandController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
@@ -498,6 +500,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\LoginCheckAttribute.cs" />
     <Compile Include="Models\ProductAttrKeyVModel.cs" />
     <Compile Include="Models\ProductCategoryUpdateVModel.cs" />
     <Compile Include="Models\ProductCategoryVModel.cs" />
@@ -558,6 +561,7 @@
     <Content Include="Views\ProductBrand\Add.cshtml" />
     <Content Include="Views\ProductBrand\List.cshtml" />
     <Content Include="Views\ProductBrand\Update.cshtml" />
+    <Content Include="Views\Login\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

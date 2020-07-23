@@ -344,7 +344,7 @@
                         //toastr.error('操作失败！');
                         Swal.fire({
                             icon: 'error',
-                            title: data.msg
+                            title: "网络连接异常！"
                         })
                     }
                 });
@@ -434,7 +434,7 @@
                         error: function (data) {
                             Swal.fire({
                                 icon: 'error',
-                                title: "删除失败！"
+                                title: "网络连接异常！"
                             })
                         }
                     });

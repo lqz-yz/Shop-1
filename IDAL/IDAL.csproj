@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IBaseDAL.cs" />
+    <Compile Include="ILoginDAL.cs" />
     <Compile Include="IProductAttrDAL.cs" />
     <Compile Include="IProductBrandDAL.cs" />
     <Compile Include="IProductDAL.cs" />

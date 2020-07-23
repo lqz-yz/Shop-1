@@ -286,6 +286,10 @@ public class CodeStringGenerator
         if(_code.Escape(edmProperty)=="ID"){
                 return "";
            }
+
+        //if(_code.Escape(edmProperty)=="Name"){
+        //return "[Required(ErrorMessage = \"名称不能为空\")] [StringLength(50, ErrorMessage = \"分类名称最大长度不能超过50\")] public string Name { get; set; }";
+        // }
         return string.Format(
             CultureInfo.InvariantCulture,
             "{0} {1} {2} {{ {3}get; {4}set; }}",

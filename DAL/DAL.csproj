@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="BaseDAL.cs" />
     <Compile Include="DbContextFactory.cs" />
+    <Compile Include="LoginDAL.cs" />
     <Compile Include="ProductAttrDAL.cs" />
     <Compile Include="ProductBrandDAL.cs" />
     <Compile Include="ProductDAL.cs" />

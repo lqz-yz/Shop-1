@@ -35,10 +35,11 @@
                         <thead>
                             <tr role="row">
                                 <th>序号</th>
+                                <th>商品图片</th>
                                 <th>商品名称</th>
                                 <th>默认价格</th>
                                 <th>默认库存</th>
-                                <th>操作</th>
+                                <th width="100">操作</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -142,15 +143,15 @@
 
                 columns: [
                     { "data": "ID" },
+                    {
+                        "data": function (data) {
+                            var html = "<img src=\"" + JSON.parse(data.ProductMainImg)[0].Url + "\" width=\"100\" />";
+                            return html;
+                        }
+                    },
                     { "data": "ProductTitle" },
                     { "data": "Price" },
                     { "data": "Stock" },
-                    //{
-                    //    "data": function (data) {
-                    //        var html = "<img src=\"/ShopImg/" + data.Img + "\" width=\"50\" height=\"50\" />";
-                    //        return html;
-                    //    }
-                    //},
                     {
                         "data": function (data) {
                             var html = "";
@@ -274,7 +275,7 @@
                         error: function (data) {
                             Swal.fire({
                                 icon: 'error',
-                                title: "删除失败！"
+                                title: "网络连接异常！"
                             })
                         }
                     });

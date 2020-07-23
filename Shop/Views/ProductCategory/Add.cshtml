@@ -132,22 +132,15 @@
         }
 
         function KeyWordsAutoFill() {
-            $("#KeyWords").val($("#ProductTitle").val())
+            $("#KeyWords").val($("#Name").val())
             KeyWordsAutoFill = function () { };
         }
 
         var PID = 0;
         var Img;
         $(function () {
-
+            //加载下拉树数据
             loadSelectTree();
-
-
-            //$('#tree').on('nodeSelected', function (event, data) {
-            //    $(this).hide();
-            //    $("#Category").val(data.text);
-            //    PID = data.tags[0]
-            //});
 
             var myDiv = document.getElementById("tree");
             document.addEventListener("click", function () {
@@ -158,8 +151,11 @@
                 $("#tree").show()
             }, true);
 
-
-
+            //$('#tree').on('nodeSelected', function (event, data) {
+            //    $(this).hide();
+            //    $("#Category").val(data.text);
+            //    PID = data.tags[0]
+            //});
 
             //文件上传初始化
             $('#Img').fileinput({
@@ -219,7 +215,6 @@
                 submitHandler: function (form) {
                     var formData = new FormData();//创建FormData对象，以键值对的方式拼接form表单数据（multipart/form-data，图片媒体文件）
                     formData.append("Name", $("#Name").val());
-                    //formData.append("Pid", $("#category_pid").val());
                     formData.append("Pid", PID);
                     formData.append("OrderNum", $("#OrderNum").val());
                     formData.append("Img", Img);
@@ -263,7 +258,7 @@
                             //toastr.error(data.msg);
                             Swal.fire({
                                 icon: 'error',
-                                title: data.msg
+                                title: "网络连接异常！"
                             })
                         }
                     });
