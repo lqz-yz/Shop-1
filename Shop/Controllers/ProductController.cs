@@ -44,14 +44,6 @@ namespace Shop.Controllers
             }
         }
 
-        //[HttpGet]
-        //public override ActionResult Add()
-        //{
-        //    List<ProductBrand> productBrands = Bll.GetAll();
-        //    ProductCategoryUpdateVModel vModel = new ProductCategoryUpdateVModel() { Categories = categories };
-        //    return View();
-        //}
-
         [HttpPost]
         public ActionResult Add(ProductVModel vModel)
         {
@@ -66,6 +58,8 @@ namespace Shop.Controllers
         [HttpPost]
         public ActionResult GetAll(int draw, int pageSize, int pageIndex)
         {
+            //var name = this.CurrentUser.Name;
+
             int count;
             var list = Bll.Search(pageSize, pageIndex, false, x => x.ID, x => true,  out count);
             var result = new

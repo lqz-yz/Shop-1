@@ -7,6 +7,7 @@ using System.Web.Mvc;
 using IBLL;
 using BLL;
 using System.Net;
+using System.Web.Security;
 
 namespace Shop.Controllers
 {
@@ -18,20 +19,25 @@ namespace Shop.Controllers
         public ActionResult Index()
         {
             //读cookies
-            if (Request.Cookies["Name"] != null)
+            if (Request.Cookies[FormsAuthentication.FormsCookieName].Value != null && Request.Cookies[FormsAuthentication.FormsCookieName].Value != "")
             {
-                string username = Server.UrlDecode(Request.Cookies["Name"].Value);
-                var result = BLL.Search(x => x.Name == username);
-                if (result.Count == 1)
+                //string userID = Server.UrlDecode(Request.Cookies[FormsAuthentication.FormsCookieName].Value);
+                //var result = BLL.Search(x => x.Name == username);
+                var cookieValue = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                var userID = Convert.ToInt32(FormsAuthentication.Decrypt(cookieValue).UserData);
+                //根据用户名从数据库中查询用户信息
+                var result = BLL.GetOne(userID);
+
+                if (result != null && result.ID == userID)
                 {
-                    if (result[0].Name== username)
-                    {
-                        Session["user"] = result[0];
-                        //下面两句实现滑动过期时间
-                        Response.Cookies["Name"].Value = Server.UrlEncode(username);
-                        Response.Cookies["Name"].Expires = DateTime.Now.AddDays(1);
-                        return Redirect("/Product/List");
-                    }
+                    //if (result.ID == userID)
+                    //{
+                    //    Session["user"] = result[0];
+                    //    //下面两句实现滑动过期时间
+                    Response.Cookies[FormsAuthentication.FormsCookieName].Value = cookieValue;
+                    Response.Cookies[FormsAuthentication.FormsCookieName].Expires = DateTime.Now.AddDays(1);
+                    return Redirect("/Product/List");
+                    //}
                 }
             }
             return View();
@@ -44,20 +50,27 @@ namespace Shop.Controllers
             password = Md5Helper.Md5(Md5Helper.Md5(salt + password));
             //从数据库查询用户信息，写入到session中
             var result = BLL.Search(x => x.Name == username && x.Password == password);
-            if (result.Count==1)
+            if (result.Count == 1)
             {
-                Session["user"] = result[0];
-                Response.Cookies["Name"].Value = Server.UrlEncode(username);
-                Response.Cookies["Name"].Expires = DateTime.Now.AddDays(1);
-                return Json(new { state = true});
+                FormsAuthenticationTicket Ticket = new FormsAuthenticationTicket(
+                    1,
+                    "user",
+                    DateTime.Now,
+                    DateTime.Now.AddDays(1),
+                    false,
+                    result[0].ID.ToString()
+                    );
+                var cookie = new HttpCookie(FormsAuthentication.FormsCookieName, FormsAuthentication.Encrypt(Ticket));
+                Response.Cookies.Add(cookie);
+                Response.Cookies[FormsAuthentication.FormsCookieName].Expires = DateTime.Now.AddDays(1);
+                return Json(new { state = true });
             }
             return Json(new { state = false, msg = "您的用户名或密码输入错误！" });
         }
 
         public ActionResult SignOut()
         {
-            Session["user"] = null;
-            Response.Cookies["Name"].Value = null;
+            Response.Cookies[FormsAuthentication.FormsCookieName].Value = "";
             return Redirect("/Login/Index");
         }
     }

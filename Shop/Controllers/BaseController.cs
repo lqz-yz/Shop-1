@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
+using BLL;
 using IBLL;
 using MODEL;
 
@@ -13,6 +15,19 @@ namespace Shop.Controllers
         where B : IBaseBLL<T>
     {
         public virtual B Bll { get; set; }
+        ILoginBLL LoginBLL = new LoginBLL();
+
+        public Admin CurrentUser
+        {
+            get
+            {
+                //获取cookie值
+                var cookieValue = Request.Cookies[FormsAuthentication.FormsCookieName].Value;
+                var userID = Convert.ToInt32(FormsAuthentication.Decrypt(cookieValue).UserData);
+                //根据用户名从数据库中查询用户信息
+                return LoginBLL.GetOne(userID);
+            }
+        }
 
         [HttpGet]
         public virtual ActionResult Add()
