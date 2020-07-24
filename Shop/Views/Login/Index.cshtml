@@ -12,8 +12,6 @@
     <title>.Net后台管理系统 | 登录</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- SweetAlert2 -->
-    <link href="~/Statics/Adminlte/plugins/sweetalert2-9.14.0/dist/sweetalert2.css" rel="stylesheet" />
     <!-- Font Awesome -->
     <link href="~/Statics/Adminlte/plugins/fontawesome-free/css/all.min.css" rel="stylesheet" />
     <link rel="stylesheet" href="~/Statics/Adminlte/plugins/fontawesome-free/css/all.min.css">
@@ -42,7 +40,7 @@
             width: 500px;
             box-sizing: inherit;
             background: #fff;
-            padding: 20px 40px 36px;
+            padding: 20px 40px 27px;
         }
         .UserInput {
             height: 56px;
@@ -56,6 +54,10 @@
         }
         .inputClass:focus {
             border: 2px solid #1a73e8;
+        }
+        .error {
+            font-size: 13px;
+            color:red;
         }
     </style>
 </head>
@@ -72,7 +74,7 @@
                     <div class="mb-3 UserInput">
                         <input type="text" id="username" name="username" class="form-control inputClass" placeholder="您的账号或用户名">
                     </div>
-                    <div class="mb-3 UserInput">
+                    <div class="mb-3 UserInput" style="margin-top:20px">
                         <input type="password" name="password" id="password" class="form-control inputClass" placeholder="您的密码">
                     </div>
                     <p id="error-msg" style="text-align:center;color:red;"></p>
@@ -87,7 +89,7 @@
                         </div>
                         <!-- /.col onclick="Login()" -->
                         <div class="col-4">
-                            <button type="button" class="btn btn-primary btn-block" onclick="Login()">登  录</button>
+                            <button type="submit" class="btn btn-primary btn-block">登  录</button>
                         </div>
                         <!-- /.col -->
                     </div>
@@ -104,19 +106,15 @@
                 </div>
                 <!-- /.social-auth-links -->
 
-                <p class="mb-1">
+                <p class="mb-1" style="margin-top:20px;">
                     <a href="forgot-password.html">忘记了您的密码？</a>
-                </p>
-                <p class="mb-0">
-                    <a href="register.html" class="text-center">创建账号</a>
+                    <a href="register.html" class="text-center" style="float:right;">创建账号</a>
                 </p>
             </div>
             <!-- /.login-card-body -->
         </div>
     </div>
     <!-- /.login-box -->
-    <!-- SweetAlert2 -->
-    <script src="~/Statics/Adminlte/plugins/sweetalert2-9.14.0/dist/sweetalert2.js"></script>
     <!-- jQuery -->
     <script src="~/Statics/Adminlte/plugins/jquery/jquery.min.js"></script>
     <!-- Bootstrap 4 -->
@@ -129,47 +127,31 @@
 
     <script>
         //数据验证
-        //$('form').validate({
-        //    rules: {
-        //        username: {
-        //            required: true
-        //        },
-        //        password: {
-        //            required: true
-        //        }
-        //    },
-        //    messages: {
-        //        username: {
-        //            required: "用户名不能为空！"
-        //        },
-        //        password: {
-        //            required: "密码不能为空！"
-        //        }
-        //    },
-        //    errorElement: 'span',
-        //    errorPlacement: function (error, element) {
-        //        error.addClass('invalid-feedback');
-        //        element.closest('.col-sm-10').append(error);
-        //    },
-        //    highlight: function (element, errorClass, validClass) {
-        //        $(element).addClass('is-invalid');
-        //    },
-        //    unhighlight: function (element, errorClass, validClass) {
-        //        $(element).removeClass('is-invalid');
-        //    },
-        //    //验证通过后的回调函数
-        //    submitHandler: function (form) {
-
-        //    }
-        //});
-
-
-
-
-
-
-        function Login() {
-            if (checkLogin()) {
+        $('#form').validate({
+            rules: {
+                username: {
+                    required: true
+                },
+                password: {
+                    required: true
+                }
+            },
+            messages: {
+                username: {
+                    required: "用户名不能为空！"
+                },
+                password: {
+                    required: "密码不能为空！"
+                }
+            },
+            highlight: function (element, errorClass, validClass) {
+                $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+                $(element).removeClass('is-invalid');
+            },
+            //验证通过后的回调函数
+            submitHandler: function (form) {
                 var formData = new FormData();
                 formData.append("UserName", $("#username").val());
                 formData.append("password", $("#password").val());
@@ -192,38 +174,18 @@
                         }
                     },
                     error: function (result) {
-                        Swal.fire({
-                            icon: 'error',
-                            title: "网络连接异常！"
-                        })
+                        $("#error-msg").html("网络连接异常！");
                     }
                 })
             }
-            return false;
-        }
-
-        function checkLogin() {
-            if ($("input[name='username']").val() == "") {
-                $("#error-msg").html('用户名不能为空！');
-                $("input[name='username']").focus();
-                return false;
-            }
-            if ($("input[name='password']").val() == "") {
-                $("#error-msg").html('密码不能为空！');
-                $("input[name='password']").focus();
-                return false;
-            }
-            else {
-                return true;
-            }
-        }
+        });
 
         saveInfo = function () {
             try {
                 var isSave = document.getElementById('remember').checked;   //保存按键是否选中
                 if (isSave) {
-                    var username = document.getElementById('username').value;
-                    var password = document.getElementById('password').value;
+                    var username = window.btoa(document.getElementById('username').value);
+                    var password = window.btoa(document.getElementById('password').value);
                     if (username != "" && password != "") {
                         SetCookie(username, password);
                     }
@@ -259,8 +221,8 @@
                     beginPosition = nmpsd.indexOf("%%");
                     nm = nmpsd.substring(0, beginPosition);
                     psd = nmpsd.substring(beginPosition + 2);
-                    document.getElementById('username').value = nm;
-                    document.getElementById('password').value = psd;
+                    document.getElementById('username').value = window.atob(nm);
+                    document.getElementById('password').value = window.atob(psd);
                     if (nm != "" && psd != "") {
                         document.getElementById('remember').checked = true;
                     }

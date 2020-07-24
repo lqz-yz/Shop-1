@@ -19,7 +19,7 @@ namespace Shop.Controllers
         public ActionResult Index()
         {
             //读cookies
-            if (Request.Cookies[FormsAuthentication.FormsCookieName].Value != null && Request.Cookies[FormsAuthentication.FormsCookieName].Value != "")
+            if (Request.Cookies[FormsAuthentication.FormsCookieName] != null&&Request.Cookies[FormsAuthentication.FormsCookieName].Value != null && Request.Cookies[FormsAuthentication.FormsCookieName].Value != "")
             {
                 //string userID = Server.UrlDecode(Request.Cookies[FormsAuthentication.FormsCookieName].Value);
                 //var result = BLL.Search(x => x.Name == username);
@@ -30,14 +30,11 @@ namespace Shop.Controllers
 
                 if (result != null && result.ID == userID)
                 {
-                    //if (result.ID == userID)
-                    //{
-                    //    Session["user"] = result[0];
-                    //    //下面两句实现滑动过期时间
+                    //Session["user"] = result[0];
+                    //下面两句实现滑动过期时间
                     Response.Cookies[FormsAuthentication.FormsCookieName].Value = cookieValue;
                     Response.Cookies[FormsAuthentication.FormsCookieName].Expires = DateTime.Now.AddDays(1);
                     return Redirect("/Product/List");
-                    //}
                 }
             }
             return View();

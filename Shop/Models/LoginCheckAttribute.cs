@@ -16,7 +16,7 @@ namespace Shop.Models
         /// <returns></returns>
         protected override bool AuthorizeCore(HttpContextBase httpContext)
         {
-            return httpContext.Request.Cookies[FormsAuthentication.FormsCookieName].Value != null && httpContext.Request.Cookies[FormsAuthentication.FormsCookieName].Value != "";
+            return httpContext.Request.Cookies[FormsAuthentication.FormsCookieName]!=null&&httpContext.Request.Cookies[FormsAuthentication.FormsCookieName].Value != null && httpContext.Request.Cookies[FormsAuthentication.FormsCookieName].Value != "";
         }
 
         /// <summary>
