@@ -46,15 +46,25 @@ namespace API.Controllers
         [Route("api/Product/getfull")]
         public ResponsMessage<ProductVModel> GetFullIndoByID(int id)
         {
-            try
+            //try
+            //{
+            //    var productDetail = BLL.GetFullInfoByID(id);
+            //    return Success(productDetail);
+            //}
+            //catch (Exception ex)
+            //{
+            //    return Error<ProductVModel>("在查询商品详情过程中出现异常" + ex.Message);
+            //}
+            List<ProductAttr> attrs;
+            List<ProductSku> skus;
+            var product = BLL.GetOne(id, out skus, out attrs);
+            ProductVModel vModel = new ProductVModel()
             {
-                var productDetail = BLL.GetFullInfoByID(id);
-                return Success(productDetail);
-            }
-            catch (Exception ex)
-            {
-                return Error<ProductVModel>("在查询商品详情过程中出现异常" + ex.Message);
-            }
+                Product = product,
+                Attrs = attrs,
+                ProductSkus = skus,
+            };
+            return Success(vModel);
         }
     }
 }

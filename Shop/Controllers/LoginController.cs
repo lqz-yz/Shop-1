@@ -31,7 +31,7 @@ namespace Shop.Controllers
                 if (result != null && result.ID == userID)
                 {
                     //Session["user"] = result[0];
-                    //下面两句实现滑动过期时间
+                    //实现滑动过期时间
                     Response.Cookies[FormsAuthentication.FormsCookieName].Value = cookieValue;
                     Response.Cookies[FormsAuthentication.FormsCookieName].Expires = DateTime.Now.AddDays(1);
                     return Redirect("/Product/List");

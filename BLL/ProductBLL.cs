@@ -97,17 +97,17 @@ namespace BLL
             return product;
         }
 
-        public ProductVModel GetFullInfoByID(int id)
-        {
-            var product = dal.GetOne(id);
-            var skus = attrBll.GetByCategoryID(product.ProductCategoryID.Value,true);
-            var productSkus = skuDal.Search(x => x.ProductID == product.ID);
-            return new ProductVModel()
-            {
-                Product = product,
-                Skus = skus,
-                ProductSkus = productSkus
-            };
-        }
+        //public ProductVModel GetFullInfoByID(int id)
+        //{
+        //    var product = dal.GetOne(id);
+        //    var attrs = attrBll.GetByCategoryID(product.ProductCategoryID.Value, true);
+        //    var productSkus = skuDal.Search(x => x.ProductID == product.ID);
+        //    return new ProductVModel()
+        //    {
+        //        Product = product,
+        //        //Attrs = attrs,
+        //        ProductSkus = productSkus
+        //    };
+        //}
     }
 }
