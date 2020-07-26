@@ -207,6 +207,7 @@
     <Content Include="Statics\Adminlte\plugins\fontawesome-free\webfonts\fa-solid-900.svg" />
     <Content Include="Statics\Adminlte\plugins\icheck-bootstrap\icheck-bootstrap.css" />
     <Content Include="Statics\Adminlte\plugins\icheck-bootstrap\icheck-bootstrap.min.css" />
+    <Content Include="Statics\Adminlte\plugins\jquery-cookie\jquery.cookie.js" />
     <Content Include="Statics\Adminlte\plugins\jquery-validation\additional-methods.js" />
     <Content Include="Statics\Adminlte\plugins\jquery-validation\additional-methods.min.js" />
     <Content Include="Statics\Adminlte\plugins\jquery-validation\jquery.validate.js" />
