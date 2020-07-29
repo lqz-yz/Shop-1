@@ -34,5 +34,6 @@ namespace MODEL
         public virtual DbSet<ProductBrand> ProductBrand { get; set; }
         public virtual DbSet<ProductSkuImg> ProductSkuImg { get; set; }
         public virtual DbSet<Admin> Admin { get; set; }
+        public virtual DbSet<Member> Member { get; set; }
     }
 }

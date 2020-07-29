@@ -54,6 +54,9 @@
       <DependentUpon>Shop.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="Member.cs">
+      <DependentUpon>Shop.tt</DependentUpon>
+    </Compile>
     <Compile Include="Product.cs">
       <DependentUpon>Shop.tt</DependentUpon>
     </Compile>

@@ -11,6 +11,20 @@
     <Property Name="CreateTime" Type="datetime" />
     <Property Name="LastLogin" Type="datetime" />
   </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="AvatarUrl" Type="varchar" MaxLength="500" />
+    <Property Name="Country" Type="varchar" MaxLength="50" />
+    <Property Name="Province" Type="varchar" MaxLength="50" />
+    <Property Name="City" Type="varchar" MaxLength="50" />
+    <Property Name="Gender" Type="char" MaxLength="1" />
+    <Property Name="NickName" Type="nvarchar" MaxLength="50" />
+    <Property Name="OpenId" Type="varchar" MaxLength="200" />
+    <Property Name="Phone" Type="varchar" MaxLength="50" />
+  </EntityType>
   <EntityType Name="Product">
     <Key>
       <PropertyRef Name="ID" />
@@ -111,6 +125,7 @@
   </EntityType>
   <EntityContainer Name="ShopModelStoreContainer">
     <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductAttr" EntityType="Self.ProductAttr" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductAttrKey" EntityType="Self.ProductAttrKey" Schema="dbo" store:Type="Tables" />

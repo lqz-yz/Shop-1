@@ -24,6 +24,7 @@
     <EntitySet Name="ProductBrand" EntityType="ShopModel.ProductBrand" />
     <EntitySet Name="ProductSkuImg" EntityType="ShopModel.ProductSkuImg" />
     <EntitySet Name="Admin" EntityType="ShopModel.Admin" />
+    <EntitySet Name="Member" EntityType="ShopModel.Member" />
   </EntityContainer>
   <EntityType Name="Product">
     <Key>
@@ -119,5 +120,19 @@
     <Property Name="Role" Type="Int32" />
     <Property Name="CreateTime" Type="DateTime" Precision="3" />
     <Property Name="LastLogin" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="Member">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="AvatarUrl" Type="String" MaxLength="500" FixedLength="false" Unicode="false" />
+    <Property Name="Country" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Province" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="City" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Gender" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+    <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="OpenId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+    <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
 </Schema>
