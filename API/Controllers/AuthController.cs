@@ -12,7 +12,6 @@ using COMMON;
 using StackExchange.Redis;
 using IBLL;
 using BLL;
-using MODEL;
 
 namespace API.Controllers
 {
@@ -43,20 +42,19 @@ namespace API.Controllers
                 var member = Bll.Search(x => x.OpenId == openId);
                 if (member.Count == 0)
                 {
-                    //Member mem = new Member();
-                    //mem = memberVModel.UserInfo;
-                    //mem.OpenId = openId;
-                    //Bll.Add(mem);
                     memberVModel.UserInfo.OpenId = openId;
                     Bll.Add(memberVModel.UserInfo);
                 }
                 //生成token
-                string salt = "#%&$#&)%";
-                string time = DateTime.Now.ToString("yyyyMMddHHmmssfffff");
-                string guid = Guid.NewGuid().ToString("N");
-                string random = new Random().Next(10000, 99999).ToString();
-                string str = salt + time + guid + random;
-                string token = Md5Helper.Md5(Md5Helper.Md5(str));
+                var token= COMMON.TokenHelper.GenToken(member[0]);
+
+
+                //string salt = "#%&$#&)%";
+                //string time = DateTime.Now.ToString("yyyyMMddHHmmssfffff");
+                //string guid = Guid.NewGuid().ToString("N");
+                //string random = new Random().Next(10000, 99999).ToString();
+                //string str = salt + time + guid + random;
+                //string token = Md5Helper.Md5(Md5Helper.Md5(str));
                 //将token存入redis
                 var conn = ConnectionMultiplexer.Connect("192.168.137.111:6379,password=123456");
                 //1.指定操作的数据库
