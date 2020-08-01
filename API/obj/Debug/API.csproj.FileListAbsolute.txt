@@ -142,3 +142,5 @@ E:\学校\课程\Asp.net云平台开发\Project\API\bin\System.Threading.Channel
 E:\学校\课程\Asp.net云平台开发\Project\API\bin\System.Threading.Tasks.Extensions.xml
 E:\学校\课程\Asp.net云平台开发\Project\API\bin\JWT.dll
 E:\学校\课程\Asp.net云平台开发\Project\API\bin\JWT.xml
+E:\学校\课程\Asp.net云平台开发\Project\API\bin\COMMON.dll.config
+E:\学校\课程\Asp.net云平台开发\Project\API\bin\JWT.pdb

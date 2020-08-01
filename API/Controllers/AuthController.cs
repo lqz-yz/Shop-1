@@ -9,9 +9,11 @@ using System.Net.Http;
 using System.Web.Http;
 using Newtonsoft.Json;
 using COMMON;
-using StackExchange.Redis;
 using IBLL;
 using BLL;
+using JWT.Algorithms;
+using JWT;
+using JWT.Serializers;
 
 namespace API.Controllers
 {
@@ -45,22 +47,19 @@ namespace API.Controllers
                     memberVModel.UserInfo.OpenId = openId;
                     Bll.Add(memberVModel.UserInfo);
                 }
+
                 //生成token
-                var token= COMMON.TokenHelper.GenToken(member[0]);
-
-
-                //string salt = "#%&$#&)%";
-                //string time = DateTime.Now.ToString("yyyyMMddHHmmssfffff");
-                //string guid = Guid.NewGuid().ToString("N");
-                //string random = new Random().Next(10000, 99999).ToString();
-                //string str = salt + time + guid + random;
-                //string token = Md5Helper.Md5(Md5Helper.Md5(str));
+                var payload = new Dictionary<string, object>
+                {
+                    { "UserName", member[0].NickName+Guid.NewGuid().ToString("N")}
+                };
+                IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
+                IJsonSerializer serializer = new JsonNetSerializer();
+                IBase64UrlEncoder urlEncoder = new JwtBase64UrlEncoder();
+                IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
+                var token= encoder.Encode(payload, ConfigurationManager.AppSettings["JwtSecret"]);
                 //将token存入redis
-                var conn = ConnectionMultiplexer.Connect("192.168.137.111:6379,password=123456");
-                //1.指定操作的数据库
-                var db = conn.GetDatabase(0);
-                //设置token的有效期为7天,openId也可以是数据库的id，唯一标识一个用户就可以
-                db.StringSet(token, openId, DateTime.Now.AddDays(7) - DateTime.Now);
+                RedisHelper.Set(token, openId, DateTime.Now.AddDays(7) - DateTime.Now);
 
                 return new ResponsMessage<string>()
                 {
@@ -72,11 +71,17 @@ namespace API.Controllers
             {
                 return new ResponsMessage<string>()
                 {
-                    Code = 500,
+                    Code = 401,
                     Message = ex.Message
                 };
-            }
-
+            }        
         }
+
+        //[AuthFilter]
+        //[Route("api/auth/test")]
+        //[HttpGet]
+        //public string AuthTest() {
+        //    return "Auth OK";
+        //}
     }
 }
