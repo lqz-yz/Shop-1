@@ -1,6 +1,6 @@
 # 1. Shop
 ## 1.1. 基于Asp.Net的电商后台管理系统
-<p align="center">
+<p align="left">
   <a href="http://www.apache.org/licenses/LICENSE-2.0">
     <img src="https://img.shields.io/hexpm/l/plug.svg" alt="License" />
   </a>
