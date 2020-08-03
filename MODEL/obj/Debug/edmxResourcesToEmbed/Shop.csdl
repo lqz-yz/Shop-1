@@ -25,6 +25,8 @@
     <EntitySet Name="ProductSkuImg" EntityType="ShopModel.ProductSkuImg" />
     <EntitySet Name="Admin" EntityType="ShopModel.Admin" />
     <EntitySet Name="Member" EntityType="ShopModel.Member" />
+    <EntitySet Name="MainOrder" EntityType="ShopModel.MainOrder" />
+    <EntitySet Name="SubOrder" EntityType="ShopModel.SubOrder" />
   </EntityContainer>
   <EntityType Name="Product">
     <Key>
@@ -134,5 +136,28 @@
     <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
     <Property Name="OpenId" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
     <Property Name="Phone" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MainOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="MemberID" Type="Int32" />
+    <Property Name="OrderNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="TotalPrice" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="OrderStatus" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="ExpressNum" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <Property Name="CreateTime" Type="DateTime" Precision="3" />
+  </EntityType>
+  <EntityType Name="SubOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="OrderID" Type="Int32" />
+    <Property Name="ProductID" Type="Int32" />
+    <Property Name="Count" Type="Int32" />
+    <Property Name="ProductPrice" Type="Decimal" Precision="18" Scale="2" />
   </EntityType>
 </Schema>

@@ -73,14 +73,6 @@ E:\学校\课程\Asp.net云平台开发\Project\Img\bin\roslyn\System.Memory.dll
 E:\学校\课程\Asp.net云平台开发\Project\Img\bin\roslyn\System.Numerics.Vectors.dll
 E:\学校\课程\Asp.net云平台开发\Project\Img\bin\roslyn\System.Runtime.CompilerServices.Unsafe.dll
 E:\学校\课程\Asp.net云平台开发\Project\Img\bin\Qiniu.dll
-E:\学校\课程\Asp.net云平台开发\Project\Img\bin\MODEL.dll
-E:\学校\课程\Asp.net云平台开发\Project\Img\bin\JWT.dll
-E:\学校\课程\Asp.net云平台开发\Project\Img\bin\EntityFramework.dll
-E:\学校\课程\Asp.net云平台开发\Project\Img\bin\MODEL.pdb
-E:\学校\课程\Asp.net云平台开发\Project\Img\bin\MODEL.dll.config
-E:\学校\课程\Asp.net云平台开发\Project\Img\bin\JWT.xml
-E:\学校\课程\Asp.net云平台开发\Project\Img\bin\EntityFramework.xml
-E:\学校\课程\Asp.net云平台开发\Project\Img\bin\zh-Hans\EntityFramework.resources.dll
 E:\学校\课程\Asp.net云平台开发\Project\Img\bin\StackExchange.Redis.dll
 E:\学校\课程\Asp.net云平台开发\Project\Img\bin\System.Memory.dll
 E:\学校\课程\Asp.net云平台开发\Project\Img\bin\System.Threading.Channels.dll
@@ -102,4 +94,3 @@ E:\学校\课程\Asp.net云平台开发\Project\Img\bin\System.IO.Pipelines.xml
 E:\学校\课程\Asp.net云平台开发\Project\Img\bin\System.Buffers.xml
 E:\学校\课程\Asp.net云平台开发\Project\Img\bin\System.Numerics.Vectors.xml
 E:\学校\课程\Asp.net云平台开发\Project\Img\bin\System.Runtime.CompilerServices.Unsafe.xml
-E:\学校\课程\Asp.net云平台开发\Project\Img\bin\JWT.pdb

@@ -4,13 +4,11 @@ E:\学校\课程\Asp.net云平台开发\Project\COMMON\obj\Debug\COMMON.dll
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\obj\Debug\COMMON.pdb
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\obj\Debug\COMMON.csprojAssemblyReference.cache
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\obj\Debug\COMMON.csproj.CoreCompileInputs.cache
-E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\JWT.dll
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\MODEL.dll
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\Newtonsoft.Json.dll
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\EntityFramework.dll
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\MODEL.pdb
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\MODEL.dll.config
-E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\JWT.xml
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\Newtonsoft.Json.xml
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\EntityFramework.xml
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\zh-Hans\EntityFramework.resources.dll
@@ -44,4 +42,3 @@ E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\System.Security
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\System.Security.Principal.Windows.xml
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\System.Threading.Channels.xml
 E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\System.Threading.Tasks.Extensions.xml
-E:\学校\课程\Asp.net云平台开发\Project\COMMON\bin\Debug\JWT.pdb

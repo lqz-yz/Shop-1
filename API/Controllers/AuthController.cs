@@ -14,6 +14,7 @@ using BLL;
 using JWT.Algorithms;
 using JWT;
 using JWT.Serializers;
+using MODEL;
 
 namespace API.Controllers
 {
@@ -41,17 +42,18 @@ namespace API.Controllers
                 Responsestream.Close();
                 string openId = JsonConvert.DeserializeObject<dynamic>(retString).openid.ToString();
                 //判断数据库中是否存在该用户（根据openId）
-                var member = Bll.Search(x => x.OpenId == openId);
-                if (member.Count == 0)
+                var member = Bll.Search(x => x.OpenId == openId).First();
+                if (member == null)
                 {
                     memberVModel.UserInfo.OpenId = openId;
                     Bll.Add(memberVModel.UserInfo);
+                    member = memberVModel.UserInfo;
                 }
 
                 //生成token
                 var payload = new Dictionary<string, object>
                 {
-                    { "UserName", member[0].NickName+Guid.NewGuid().ToString("N")}
+                    { "UserName", member.NickName+Guid.NewGuid().ToString("N")}
                 };
                 IJwtAlgorithm algorithm = new HMACSHA256Algorithm();
                 IJsonSerializer serializer = new JsonNetSerializer();
@@ -59,7 +61,7 @@ namespace API.Controllers
                 IJwtEncoder encoder = new JwtEncoder(algorithm, serializer, urlEncoder);
                 var token= encoder.Encode(payload, ConfigurationManager.AppSettings["JwtSecret"]);
                 //将token存入redis
-                RedisHelper.Set(token, openId, DateTime.Now.AddDays(7) - DateTime.Now);
+                RedisHelper.Set(token, member.ID, DateTime.Now.AddDays(7) - DateTime.Now);
 
                 return new ResponsMessage<string>()
                 {

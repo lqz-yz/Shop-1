@@ -11,6 +11,19 @@
     <Property Name="CreateTime" Type="datetime" />
     <Property Name="LastLogin" Type="datetime" />
   </EntityType>
+  <EntityType Name="MainOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MemberID" Type="int" />
+    <Property Name="OrderNum" Type="varchar" MaxLength="50" />
+    <Property Name="TotalPrice" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="OrderStatus" Type="varchar" MaxLength="50" />
+    <Property Name="ExpressNum" Type="varchar" MaxLength="50" />
+    <Property Name="Address" Type="nvarchar" MaxLength="50" />
+    <Property Name="CreateTime" Type="datetime" />
+  </EntityType>
   <EntityType Name="Member">
     <Key>
       <PropertyRef Name="ID" />
@@ -123,8 +136,19 @@
     <Property Name="SkuName" Type="nvarchar" MaxLength="50" />
     <Property Name="SkuValue" Type="nvarchar" MaxLength="50" />
   </EntityType>
+  <EntityType Name="SubOrder">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="OrderID" Type="int" />
+    <Property Name="ProductID" Type="int" />
+    <Property Name="Count" Type="int" />
+    <Property Name="ProductPrice" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
   <EntityContainer Name="ShopModelStoreContainer">
     <EntitySet Name="Admin" EntityType="Self.Admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MainOrder" EntityType="Self.MainOrder" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductAttr" EntityType="Self.ProductAttr" Schema="dbo" store:Type="Tables" />
@@ -134,5 +158,6 @@
     <EntitySet Name="ProductCategory" EntityType="Self.ProductCategory" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductSku" EntityType="Self.ProductSku" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ProductSkuImg" EntityType="Self.ProductSkuImg" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SubOrder" EntityType="Self.SubOrder" Schema="dbo" store:Type="Tables" />
   </EntityContainer>
 </Schema>

@@ -61,6 +61,10 @@
     <Compile Include="SubOrderBLL.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\COMMON\COMMON.csproj">
+      <Project>{da79489b-c293-4e2a-a355-44047ddf857c}</Project>
+      <Name>COMMON</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DAL\DAL.csproj">
       <Project>{eea44737-8890-464e-993b-14c7e7b4321f}</Project>
       <Name>DAL</Name>

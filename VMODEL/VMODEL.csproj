@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="OrderVModel.cs" />
     <Compile Include="ProductAttrKeyVModel.cs" />
     <Compile Include="ProductVModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
