@@ -50,12 +50,14 @@
   <ItemGroup>
     <Compile Include="IBaseBLL.cs" />
     <Compile Include="ILoginBLL.cs" />
+    <Compile Include="IMainOrderBLL.cs" />
     <Compile Include="IMemberBLL.cs" />
     <Compile Include="IProductAttrValueBLL.cs" />
     <Compile Include="IProductAttrKeyBLL.cs" />
     <Compile Include="IProductBLL.cs" />
     <Compile Include="IProductBrandBLL.cs" />
     <Compile Include="IProductCategoryBLL.cs" />
+    <Compile Include="ISubOrderBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

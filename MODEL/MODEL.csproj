@@ -54,6 +54,9 @@
       <DependentUpon>Shop.tt</DependentUpon>
     </Compile>
     <Compile Include="BaseModel.cs" />
+    <Compile Include="MainOrder.cs">
+      <DependentUpon>Shop.tt</DependentUpon>
+    </Compile>
     <Compile Include="Member.cs">
       <DependentUpon>Shop.tt</DependentUpon>
     </Compile>
@@ -96,6 +99,9 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Shop.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="SubOrder.cs">
+      <DependentUpon>Shop.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

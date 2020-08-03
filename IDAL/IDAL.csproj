@@ -50,6 +50,7 @@
   <ItemGroup>
     <Compile Include="IBaseDAL.cs" />
     <Compile Include="ILoginDAL.cs" />
+    <Compile Include="IMainOrderDAL.cs" />
     <Compile Include="IMemberDAL.cs" />
     <Compile Include="IProductAttrDAL.cs" />
     <Compile Include="IProductBrandDAL.cs" />
@@ -59,6 +60,7 @@
     <Compile Include="IProductCategoryDAL.cs" />
     <Compile Include="IProductSkuDAL.cs" />
     <Compile Include="IProductSkuImgDAL.cs" />
+    <Compile Include="ISubOrderDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
